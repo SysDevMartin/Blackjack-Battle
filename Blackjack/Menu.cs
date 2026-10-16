@@ -30,4 +30,13 @@ public static class Menu
 
         return MenuChoice.None;
     }
+    
+    public static void QuitGame()
+    {
+        AnsiConsole.WriteLine("");
+        if (AnsiConsole.Confirm("[bold]Quit the game?[/] [gray50]All progress will be lost.[/]"))
+        {
+            Game.CurrentGameState = Game.GameState.Quit;
+        }
+    }
 }

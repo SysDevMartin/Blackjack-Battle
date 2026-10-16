@@ -92,7 +92,7 @@ public class Player
                 break;
             
             case ActionChoice.Quit:
-                game.End();
+                Menu.QuitGame();
                 break;
         }
 
