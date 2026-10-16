@@ -9,7 +9,6 @@ public class Dealer
     private const int StandWhenReachingSumLeftToTarget = 4;
     private const int PercentageChanceToIgnoreSumWhenBelowTarget = 50;
     private const int SumLeftToTargetForIgnoreChance = 3;
-    //private const string TextColorName = "red";
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
@@ -235,7 +234,7 @@ public class Dealer
         Game.CurrentTurn = Game.Turn.Player;
     }
     
-    public void PerformTurn()
+    public void ProcessTurn()
     {
         AnsiConsole.Status()
             .Start("\nDealer's turn. Making a decision...", ctx =>

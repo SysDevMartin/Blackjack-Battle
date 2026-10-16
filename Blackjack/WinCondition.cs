@@ -94,7 +94,7 @@ public class WinCondition
         }
     }
 
-    public void CheckGameWinCondition(Player player, Dealer dealer)
+    public static void CheckGameWinCondition(Player player, Dealer dealer)
     {
         if (!player.Stats.IsAlive && !dealer.Stats.IsAlive)
         {

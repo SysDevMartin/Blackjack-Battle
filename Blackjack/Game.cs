@@ -51,7 +51,7 @@ public class Game
         }
     }
 
-    private void PerformGameState(ref string gameMessageMarkupText, Player player, Dealer dealer)
+    private void ProcessGameState(ref string gameMessageMarkupText, Player player, Dealer dealer)
     {
         switch (CurrentGameState)
         {
@@ -59,11 +59,11 @@ public class Game
                 switch (CurrentTurn)
                 {
                     case Turn.Player:
-                        gameMessageMarkupText = player.PerformTurn(this, dealer);
+                        gameMessageMarkupText = player.ProcessTurn(this, dealer);
                         break;
                     
                     case Turn.Dealer:
-                        dealer.PerformTurn();
+                        dealer.ProcessTurn();
                         break;
                 }
                 break;
@@ -109,10 +109,10 @@ public class Game
             if (player.IsStanding && dealer.IsStanding)
             {
                 WinCondition.CheckRoundWinCondition(player, dealer);
-                WinCondition.CheckRoundWinCondition(player, dealer);
+                WinCondition.CheckGameWinCondition(player, dealer);
             }
 
-            PerformGameState(ref gameMessageMarkupText, player, dealer);
+            ProcessGameState(ref gameMessageMarkupText, player, dealer);
         }
     }
 }

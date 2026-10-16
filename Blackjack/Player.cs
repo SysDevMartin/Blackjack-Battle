@@ -4,8 +4,6 @@ namespace Blackjack;
 
 public class Player
 {
-    //private const string TextColorName = "green";
-    
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
     
@@ -66,7 +64,7 @@ public class Player
         return ActionChoice.None;
     }
     
-    public string PerformTurn(Game game, Dealer dealer)
+    public string ProcessTurn(Game game, Dealer dealer)
     {
         var actionMessage = String.Empty;
         var playerChoice = PromptActionChoice();
