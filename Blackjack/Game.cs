@@ -69,10 +69,10 @@ public class Game
                 break;
             
             case GameState.Stand:
-                var menuChoice = Menu.PromptGameChoice();
+                var menuChoice = Menu.PromptAfterRoundChoice();
                 switch (menuChoice)
                 {
-                    case Menu.MenuChoice.Continue:
+                    case Menu.AfterRoundChoice.Continue:
                         InitializeNewRound(player, dealer);
                         break;
                 }

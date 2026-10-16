@@ -7,11 +7,14 @@ public class WinCondition
     public static void CheckRoundWinCondition(Player player, Dealer dealer)
     {
         Game.CurrentGameState = Game.GameState.Stand;
+        
         var playerCardSum = player.Hand.GetEffectiveCardSum();
         var dealerCardSum = dealer.Hand.GetEffectiveCardSum();
+        
         var playerDealerSumDifference = playerCardSum - dealerCardSum;
         var isPlayerOverTargetSum = playerCardSum > Game.Settings.TargetCardSum;
         var isDealerOverTargetSum = dealerCardSum > Game.Settings.TargetCardSum;
+        
         var playerWins = false;
         var dealerWins = false;
 

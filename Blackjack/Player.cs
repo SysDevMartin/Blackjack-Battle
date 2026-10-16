@@ -10,14 +10,6 @@ public class Player
     public readonly Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
     private readonly Color _borderColor = Color.Green;
 
-    public enum ActionChoice
-    {
-        Hit,
-        Stand,
-        Quit,
-        None
-    }
-
     public void DisplayPanel()
     {
         var name = "YOU";
@@ -33,45 +25,14 @@ public class Player
             IsStanding);
     }
     
-    public ActionChoice PromptActionChoice()
-    {
-        AnsiConsole.WriteLine("");
-        
-        string[] availableChoices =
-        [
-            "[bold][chartreuse3]Hit[/][/] [dim]- Get a card from the dealer.[/]",
-            "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]",
-            "[bold][red]Quit[/][/]"
-        ];
-        
-        var selectedMenuItem = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("[bold]Your turn. What's your decision?[/]")
-                .AddChoices(availableChoices));
-        
-        switch (selectedMenuItem)
-        {
-            case "[bold][chartreuse3]Hit[/][/] [dim]- Get a card from the dealer.[/]":
-                return ActionChoice.Hit;
-            
-            case "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]":
-                return ActionChoice.Stand;
-            
-            case "[bold][red]Quit[/][/]":
-                return ActionChoice.Quit;
-        }
-
-        return ActionChoice.None;
-    }
-    
     public string ProcessTurn(Game game, Dealer dealer)
     {
         var actionMessage = String.Empty;
-        var playerChoice = PromptActionChoice();
+        var playerChoice = Menu.PromptTurnActionChoice();
         
         switch (playerChoice)
         {
-            case ActionChoice.Hit:
+            case Menu.TurnActionChoice.Hit:
                 if (Hand.Cards.Count < Game.Settings.MaxCardCount)
                 {
                     IsStanding = false;
@@ -84,12 +45,12 @@ public class Player
                 }
                 break;
             
-            case ActionChoice.Stand:
+            case Menu.TurnActionChoice.Stand:
                 IsStanding = true;
                 Game.CurrentTurn = Game.Turn.Dealer;
                 break;
             
-            case ActionChoice.Quit:
+            case Menu.TurnActionChoice.Quit:
                 Menu.QuitGame();
                 break;
         }

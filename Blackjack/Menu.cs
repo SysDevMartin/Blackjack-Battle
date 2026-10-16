@@ -4,13 +4,52 @@ namespace Blackjack;
 
 public static class Menu
 {
-    public enum MenuChoice
+    public enum TurnActionChoice
+    {
+        Hit,
+        Stand,
+        Quit,
+        None
+    }
+    
+    public enum AfterRoundChoice
     {
         Continue,
         None
     }
     
-    public static MenuChoice PromptGameChoice()
+    public static TurnActionChoice PromptTurnActionChoice()
+    {
+        AnsiConsole.WriteLine("");
+        
+        string[] availableChoices =
+        [
+            "[bold][chartreuse3]Hit[/][/] [dim]- Get a card from the dealer.[/]",
+            "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]",
+            "[bold][red]Quit[/][/]"
+        ];
+        
+        var selectedMenuItem = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("[bold]Your turn. What's your decision?[/]")
+                .AddChoices(availableChoices));
+        
+        switch (selectedMenuItem)
+        {
+            case "[bold][chartreuse3]Hit[/][/] [dim]- Get a card from the dealer.[/]":
+                return TurnActionChoice.Hit;
+            
+            case "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]":
+                return TurnActionChoice.Stand;
+            
+            case "[bold][red]Quit[/][/]":
+                return TurnActionChoice.Quit;
+        }
+
+        return TurnActionChoice.None;
+    }
+    
+    public static AfterRoundChoice PromptAfterRoundChoice()
     {
         AnsiConsole.WriteLine("");
             
@@ -25,10 +64,10 @@ public static class Menu
         switch (selectedMenuItem)
         {
             case "[bold][chartreuse3]Continue[/][/]":
-                return MenuChoice.Continue;
+                return AfterRoundChoice.Continue;
         }
 
-        return MenuChoice.None;
+        return AfterRoundChoice.None;
     }
     
     public static void QuitGame()
