@@ -11,7 +11,7 @@ public class Display
         AnsiConsole.MarkupLine("  [darkseagreen4]Get the sum of your cards as close as possible to [bold]21[/] without going over.[/]");
         AnsiConsole.MarkupLine("  [darkseagreen4]Winning a round deals damage to the opponent and increases the damage multiplier.[/]");
         AnsiConsole.MarkupLine("  [darkseagreen4]If the dealer's health is depleted, you win. If your health is depleted, you lose.[/]");
-        AnsiConsole.MarkupLine("  [darkseagreen4]Purple cards are Aces (either 1 or 11, depending on what's best for your hand).[/]\n");
+        AnsiConsole.MarkupLine("  [darkseagreen4]Purple cards are Aces (either 1 or 11, depending on what's best for the hand).[/]\n");
     }
 
     public static void DisplayPlayerPanel(
@@ -33,7 +33,7 @@ public class Display
         var cardPanel = GetCardPanel(hand, revealCards);
         var damageMultiplierText = $"{stats.DamageMultiplier}x";
         var cardSum = hand.GetEffectiveCardSum();
-        var visibleCardSum = cardSum - hand.Cards[1].EffectiveValue;
+        var visibleCardSum = cardSum - hand.Cards[Dealer.HiddenCardIndex].EffectiveValue;
         var displayedCardSum = revealCards ? $"{cardSum}" : $"{visibleCardSum} + ?";
         var headerText = playerPhrase.Length > 0 ? $"{playerName} - {playerPhrase}" : playerName;
         var effectiveDamageText = revealCards ? $"{cardSum * stats.DamageMultiplier}" : $"{visibleCardSum * stats.DamageMultiplier}+";
@@ -56,6 +56,13 @@ public class Display
         .BorderColor(borderColor);
         
         AnsiConsole.Write(panel);
+    }
+
+    public Panel GetPortraitPanel()
+    {
+        var panel = new Panel("test");
+
+        return panel;
     }
 
     private static Panel GetCardPanel(Hand hand, bool revealCards)

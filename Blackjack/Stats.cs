@@ -7,6 +7,7 @@ public class Stats
     public int CurrentHealth { get; private set; }
     public int MaxHealth { get; }
     public int DamageMultiplier { get; private set; }
+    public bool IsAlive => CurrentHealth > 0;
 
     public Stats(int maxHealth, int damageMultiplier)
     {
@@ -20,10 +21,10 @@ public class Stats
         return cardSum * DamageMultiplier;
     }
 
-    public bool TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;
-        return CurrentHealth <= 0;
+        CurrentHealth = Math.Clamp(CurrentHealth, 0, MaxHealth);
     }
 
     public void IncreaseDamageMultiplier()

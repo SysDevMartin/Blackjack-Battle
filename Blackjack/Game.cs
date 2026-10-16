@@ -70,8 +70,13 @@ public class Game
         var isDealerOverTargetSum = dealerCardSum > Settings.TargetCardSum;
         var playerWins = false;
         var dealerWins = false;
-        
-        if (isPlayerOverTargetSum && isDealerOverTargetSum)
+
+        if (playerCardSum == dealerCardSum)
+        {
+            playerWins = false;
+            dealerWins = false;
+        }
+        else if (isPlayerOverTargetSum && isDealerOverTargetSum)
         {
             if (playerCardSum < dealerCardSum)
             {
@@ -120,7 +125,7 @@ public class Game
         if (playerWins)
         {
             var playerDamage = player.Stats.GetDamage(playerCardSum);
-            var isDead = dealer.Stats.TakeDamage(playerDamage);
+            dealer.Stats.TakeDamage(playerDamage);
             
             var previousDamageMultiplier = player.Stats.DamageMultiplier;
             AnsiConsole.MarkupLine($"[green]Dealer takes [bold]{playerDamage}[/] damage and has [bold]{dealer.Stats.CurrentHealth}[/] health left.[/]");
@@ -131,7 +136,7 @@ public class Game
         else if (dealerWins)
         {
             var dealerDamage = dealer.Stats.GetDamage(dealerCardSum);
-            var isDead = player.Stats.TakeDamage(dealerDamage);
+            player.Stats.TakeDamage(dealerDamage);
             
             var previousDamageMultiplier = dealer.Stats.DamageMultiplier;
             AnsiConsole.MarkupLine($"[red]You take [bold]{dealerDamage}[/] damage and have [bold]{player.Stats.CurrentHealth}[/] health left.[/]");
@@ -142,6 +147,22 @@ public class Game
         else
         {
             AnsiConsole.MarkupLine("[yellow]No one takes damage.[/]");
+        }
+
+        if (!player.Stats.IsAlive && !dealer.Stats.IsAlive)
+        {
+            // Both player and dealer are dead.
+            AnsiConsole.MarkupLine("\n[bold][yellow]Game Over! Both you and the dealer died.[/][/]");
+        }
+        else if (!dealer.Stats.IsAlive)
+        {
+            // Dealer is dead.
+            AnsiConsole.MarkupLine("\n[bold][green]Victory! You defeated the dealer.[/][/]");
+        }
+        else if (!player.Stats.IsAlive)
+        {
+            // Player is dead.
+            AnsiConsole.MarkupLine("\n[bold][red]Game Over! You've been defeated by the dealer.[/][/]");
         }
     }
 
