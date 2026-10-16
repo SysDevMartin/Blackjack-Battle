@@ -51,7 +51,7 @@ public class Player
                 break;
             
             case Menu.TurnActionChoice.Quit:
-                Menu.QuitGame();
+                Menu.PromptGameQuit();
                 break;
         }
 

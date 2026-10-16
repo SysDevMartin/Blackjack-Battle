@@ -70,7 +70,7 @@ public static class Menu
         return AfterRoundChoice.None;
     }
     
-    public static void QuitGame()
+    public static void PromptGameQuit()
     {
         AnsiConsole.WriteLine("");
         if (AnsiConsole.Confirm("[bold]Quit the game?[/] [gray50]All progress will be lost.[/]"))
