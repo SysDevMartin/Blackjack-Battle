@@ -71,12 +71,7 @@ public class Game
         var playerWins = false;
         var dealerWins = false;
         
-        if (playerDealerSumDifference == 0)
-        {
-            playerWins = false;
-            dealerWins = false;
-        }
-        else if (isPlayerOverTargetSum && isDealerOverTargetSum)
+        if (isPlayerOverTargetSum && isDealerOverTargetSum)
         {
             if (playerCardSum < dealerCardSum)
             {
@@ -119,7 +114,7 @@ public class Game
             AnsiConsole.MarkupLine("[bold][yellow]Draw![/][/]");
         }
         
-        AnsiConsole.MarkupLine($"[darkgoldenrod]You have [bold]{playerCardSum}[/] and dealer has [bold]{dealerCardSum}[/][/].");
+        AnsiConsole.MarkupLine($"[darkgoldenrod]Your sum is [bold]{playerCardSum}[/] and dealer's is [bold]{dealerCardSum}[/][/].");
         AnsiConsole.WriteLine("");
         
         if (playerWins)

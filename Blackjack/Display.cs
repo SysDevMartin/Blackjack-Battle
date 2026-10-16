@@ -8,7 +8,10 @@ public class Display
     {
         var figlet = new FigletText("Blackjack Battle").Color(Color.DarkSeaGreen4_1);
         AnsiConsole.Write(figlet);
-        AnsiConsole.MarkupLine("  [darkseagreen4]Get the sum of your cards as close as possible to [bold]21[/] without going over.[/]\n");
+        AnsiConsole.MarkupLine("  [darkseagreen4]Get the sum of your cards as close as possible to [bold]21[/] without going over.[/]");
+        AnsiConsole.MarkupLine("  [darkseagreen4]Winning a round deals damage to the opponent and increases the damage multiplier.[/]");
+        AnsiConsole.MarkupLine("  [darkseagreen4]If the dealer's health is depleted, you win. If your health is depleted, you lose.[/]");
+        AnsiConsole.MarkupLine("  [darkseagreen4]Purple cards are Aces (either 1 or 11, depending on what's best for your hand).[/]\n");
     }
 
     public static void DisplayPlayerPanel(
