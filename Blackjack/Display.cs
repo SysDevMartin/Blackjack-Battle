@@ -19,7 +19,9 @@ public class Display
         Stats stats,
         string playerName,
         string playerPhrase,
+        string portraitAsciiArt,
         Color borderColor,
+        string textColorName,
         bool revealCards,
         bool isStanding
         )
@@ -29,6 +31,10 @@ public class Display
             playerName += " (STANDING)";
             borderColor = Color.LightGoldenrod1;
         }
+
+        var grid = new Grid();
+        grid.AddColumn();
+        grid.AddColumn();
         
         var cardPanel = GetCardPanel(hand, revealCards);
         var damageMultiplierText = $"{stats.DamageMultiplier}x";
@@ -54,15 +60,23 @@ public class Display
         }
         .Header(headerText)
         .BorderColor(borderColor);
+
+        var portraitPanel = GetPortraitPanel(portraitAsciiArt, borderColor, textColorName);
+        grid.AddRow(panel, portraitPanel);
         
-        AnsiConsole.Write(panel);
+        //AnsiConsole.Write(panel);
+        AnsiConsole.Write(grid);
     }
 
-    public Panel GetPortraitPanel()
+    public static Panel GetPortraitPanel(string asciiArt, Color borderColor, string textColorName)
     {
-        var panel = new Panel("test");
-
-        return panel;
+        var markup = new Markup($"[{textColorName}]{asciiArt.Trim("\r\n").Trim("\n")}[/]");
+        return new Panel(markup)
+            {
+                Width = 25,
+                Height = 10
+            }
+            .BorderColor(borderColor);
     }
 
     private static Panel GetCardPanel(Hand hand, bool revealCards)

@@ -4,6 +4,8 @@ namespace Blackjack;
 
 public class Player
 {
+    public const string TextColorName = "green";
+    
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
     
@@ -15,12 +17,24 @@ public class Player
         var name = "YOU";
         var phrase = string.Empty;
         var revealCards = true;
+        var asciiArt = @"
+    _| /-_-\)|/_
+   (___\ _ //___\
+   (  |\\_/// * \\
+    \_| \_((*   *))
+    ( |__|_\\  *//
+    (o/  _  \_*_/
+    //\__|__/\
+   // |  | |  |
+";
         
         Display.DisplayPlayerPanel(
             Hand, Stats,
             name,
             phrase,
+            asciiArt,
             _borderColor,
+            TextColorName,
             revealCards,
             IsStanding);
     }

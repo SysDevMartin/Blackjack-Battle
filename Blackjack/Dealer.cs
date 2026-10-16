@@ -9,6 +9,7 @@ public class Dealer
     private const int StandWhenReachingSumLeftToTarget = 4;
     private const int PercentageChanceToIgnoreSumWhenBelowTarget = 50;
     private const int SumLeftToTargetForIgnoreChance = 3;
+    private const string TextColorName = "red";
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
@@ -179,13 +180,25 @@ public class Dealer
     {
         var name = "DEALER";
         var phrase = Game.CurrentTurn == Game.Turn.Dealer ? "Thinking..." : GetRandomPhrase();
+        var asciiArt = @"
+    /(   )\
+    \ \_/ /   , /\ ,
+    /_   _\  /| || |\
+   | \> </ | |\_||_/|
+   (_  ^  _)  \____/
+ /`\|IIIII|/`\ _\/_
+ \  \_____/  /  ()
+ /\   )=(   /\  ()
+";
         
         Display.DisplayPlayerPanel(
             Hand,
             Stats,
             name,
             phrase,
+            asciiArt,
             _borderColor,
+            TextColorName,
             revealCards,
             IsStanding);
     }
