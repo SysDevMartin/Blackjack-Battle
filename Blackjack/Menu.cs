@@ -8,6 +8,7 @@ public static class Menu
     {
         Hit,
         Stand,
+        DoubleDown,
         Quit,
         None
     }
@@ -15,6 +16,13 @@ public static class Menu
     public enum AfterRoundChoice
     {
         Continue,
+        None
+    }
+
+    public enum GameOverMenuChoice
+    {
+        PlayAgain,
+        Quit,
         None
     }
     
@@ -26,6 +34,7 @@ public static class Menu
         [
             "[bold][chartreuse3]Hit[/][/] [dim]- Get a card from the dealer.[/]",
             "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]",
+            "[bold][darkorange]Double Down[/][/] [dim]- Double your damage dealt AND damage taken this round.[/]",
             "[bold][red]Quit[/][/]"
         ];
         
@@ -41,6 +50,9 @@ public static class Menu
             
             case "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]":
                 return TurnActionChoice.Stand;
+            
+            case "[bold][darkorange]Double Down[/][/] [dim]- Double your damage dealt AND damage taken this round.[/]":
+                return TurnActionChoice.DoubleDown;
             
             case "[bold][red]Quit[/][/]":
                 return TurnActionChoice.Quit;
@@ -77,5 +89,32 @@ public static class Menu
         {
             Game.CurrentGameState = Game.GameState.Quit;
         }
+    }
+
+    public static GameOverMenuChoice PromptGameOverMenuChoice()
+    {
+        AnsiConsole.WriteLine("");
+        
+        string[] availableChoices =
+        [
+            "[bold][chartreuse3]Play Again[/][/]",
+            "[bold][red]Quit[/][/]"
+        ];
+        
+        var selectedMenuItem = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("[bold]Play again?[/]")
+                .AddChoices(availableChoices));
+        
+        switch (selectedMenuItem)
+        {
+            case "[bold][chartreuse3]Play Again[/][/]":
+                return GameOverMenuChoice.PlayAgain;
+            
+            case "[bold][red]Quit[/][/]":
+                return GameOverMenuChoice.Quit;
+        }
+
+        return GameOverMenuChoice.None;
     }
 }

@@ -20,6 +20,7 @@ public class Game
     {
         Play,
         Stand,
+        GameOver,
         Quit
     }
 
@@ -31,6 +32,14 @@ public class Game
     
     public static GameState CurrentGameState;
     public static Turn CurrentTurn;
+
+    public void ResetGame(Player player, Dealer dealer)
+    {
+        dealer.Reset();
+        player.Reset();
+        
+        InitializeNewRound(player, dealer);
+    }
     
     private void InitializeNewRound(Player player, Dealer dealer)
     {
@@ -39,6 +48,9 @@ public class Game
 
         dealer.IsStanding = false;
         player.IsStanding = false;
+
+        dealer.Stats.IsDoubleDownActive = false;
+        player.Stats.IsDoubleDownActive = false;
         
         dealer.Hand.Reset();
         player.Hand.Reset();
@@ -109,10 +121,14 @@ public class Game
             if (player.IsStanding && dealer.IsStanding)
             {
                 WinCondition.CheckRoundWinCondition(player, dealer);
-                WinCondition.CheckGameWinCondition(player, dealer);
+                // TODO: Fix bug with game reset after winning/losing.
+                WinCondition.CheckGameWinCondition(this, player, dealer);
             }
 
-            ProcessGameState(ref gameMessageMarkupText, player, dealer);
+            if (CurrentGameState != GameState.GameOver)
+            {
+                ProcessGameState(ref gameMessageMarkupText, player, dealer);
+            }
         }
     }
 }

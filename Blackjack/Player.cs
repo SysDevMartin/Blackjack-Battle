@@ -4,13 +4,21 @@ namespace Blackjack;
 
 public class Player
 {
-    public const string TextColorName = "green";
+    private const string TextColorName = "green";
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
+    //public Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+    public readonly Stats Stats = new(Game.Settings.StartingMaxHealth, 1000);
     
-    public readonly Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
     private readonly Color _borderColor = Color.Green;
+
+    public void Reset()
+    {
+        IsStanding = false;
+        Hand.Cards.Clear();
+        Stats.Reset(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+    }
 
     public void DisplayPanel()
     {
@@ -36,7 +44,8 @@ public class Player
             _borderColor,
             TextColorName,
             revealCards,
-            IsStanding);
+            IsStanding,
+            Stats.IsDoubleDownActive);
     }
     
     public string ProcessTurn(Game game, Dealer dealer)
@@ -62,6 +71,18 @@ public class Player
             case Menu.TurnActionChoice.Stand:
                 IsStanding = true;
                 Game.CurrentTurn = Game.Turn.Dealer;
+                break;
+            
+            case Menu.TurnActionChoice.DoubleDown:
+                if (!Stats.IsDoubleDownActive)
+                {
+                    Stats.IsDoubleDownActive = true;
+                    Game.CurrentTurn = Game.Turn.Dealer;
+                }
+                else
+                {
+                    actionMessage = "[red]You can only Double Down once per round.[/]";
+                }
                 break;
             
             case Menu.TurnActionChoice.Quit:

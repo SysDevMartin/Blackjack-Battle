@@ -13,10 +13,17 @@ public class Dealer
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
-    
     public readonly Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+    
     private readonly Color _borderColor = Color.Red;
     private readonly Random _randomNumberGenerator = new();
+
+    public void Reset()
+    {
+        IsStanding = false;
+        Hand.Cards.Clear();
+        Stats.Reset(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+    }
 
     public string GetRandomPhrase()
     {
@@ -200,7 +207,8 @@ public class Dealer
             _borderColor,
             TextColorName,
             revealCards,
-            IsStanding);
+            IsStanding,
+            Stats.IsDoubleDownActive);
     }
 
     private void MakeTurnDecision()

@@ -23,7 +23,8 @@ public class Display
         Color borderColor,
         string textColorName,
         bool revealCards,
-        bool isStanding
+        bool isStanding,
+        bool isDoubleDownActive
         )
     {
         if (isStanding)
@@ -44,6 +45,19 @@ public class Display
         var headerText = playerPhrase.Length > 0 ? $"{playerName} - {playerPhrase}" : playerName;
         var effectiveDamageText = revealCards ? $"{cardSum * stats.DamageMultiplier}" : $"{visibleCardSum * stats.DamageMultiplier}+";
         var percentageHealth = Math.Round((stats.CurrentHealth / (float)stats.MaxHealth) * 100);
+        var sumText = $"[white]Sum: {displayedCardSum}[/]";
+
+        if (isDoubleDownActive)
+        {
+            effectiveDamageText = revealCards
+                ? $"{cardSum * stats.DamageMultiplier * 2}"
+                : $"{visibleCardSum * stats.DamageMultiplier * 2}+";
+            sumText += $" [darkorange]({effectiveDamageText} DAMAGE)[/]";
+        }
+        else
+        {
+            sumText += $" [dim]({effectiveDamageText} damage)[/]";
+        }
         
         var rows = new Rows(
             new Markup($"Health: [bold]{stats.CurrentHealth}[/] / [bold]{stats.MaxHealth}[/] [dim]({percentageHealth}%)[/]"),
@@ -51,8 +65,8 @@ public class Display
             new Rule { Style = Style.Parse("gray30") },
             cardPanel,
             new Rule { Style = Style.Parse("gray30") },
-            new Markup($"[white]Sum: {displayedCardSum} [dim]({effectiveDamageText} damage)[/][/]")
-            );
+            new Markup(sumText)
+        );
 
         var panel = new Panel(rows)
         {

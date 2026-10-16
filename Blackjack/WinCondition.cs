@@ -72,6 +72,10 @@ public class WinCondition
         if (playerWins)
         {
             var playerDamage = player.Stats.GetDamage(playerCardSum);
+            if (player.Stats.IsDoubleDownActive || dealer.Stats.IsDoubleDownActive)
+            {
+                playerDamage *= 2;
+            }
             dealer.Stats.TakeDamage(playerDamage);
             
             var previousDamageMultiplier = player.Stats.DamageMultiplier;
@@ -83,6 +87,10 @@ public class WinCondition
         else if (dealerWins)
         {
             var dealerDamage = dealer.Stats.GetDamage(dealerCardSum);
+            if (dealer.Stats.IsDoubleDownActive || player.Stats.IsDoubleDownActive)
+            {
+                dealerDamage *= 2;
+            }
             player.Stats.TakeDamage(dealerDamage);
             
             var previousDamageMultiplier = dealer.Stats.DamageMultiplier;
@@ -97,22 +105,44 @@ public class WinCondition
         }
     }
 
-    public static void CheckGameWinCondition(Player player, Dealer dealer)
+    public static void CheckGameWinCondition(Game game, Player player, Dealer dealer)
     {
+        var isGameOver = false;
+        
         if (!player.Stats.IsAlive && !dealer.Stats.IsAlive)
         {
             // Both player and dealer are dead.
+            isGameOver = true;
             AnsiConsole.MarkupLine("\n[bold][yellow]Game Over! Both you and the dealer died.[/][/]");
         }
         else if (!dealer.Stats.IsAlive)
         {
             // Dealer is dead.
+            isGameOver = true;
             AnsiConsole.MarkupLine("\n[bold][green]Victory! You defeated the dealer.[/][/]");
         }
         else if (!player.Stats.IsAlive)
         {
             // Player is dead.
+            isGameOver = true;
             AnsiConsole.MarkupLine("\n[bold][red]Game Over! You've been defeated by the dealer.[/][/]");
+        }
+
+        if (isGameOver)
+        {
+            Game.CurrentGameState = Game.GameState.GameOver;
+            var menuChoice = Menu.PromptGameOverMenuChoice();
+            
+            switch (menuChoice)
+            {
+                case Menu.GameOverMenuChoice.PlayAgain:
+                    game.ResetGame(player, dealer);
+                    break;
+            
+                case Menu.GameOverMenuChoice.Quit:
+                    Game.CurrentGameState = Game.GameState.Quit;
+                    break;
+            }
         }
     }
 }
