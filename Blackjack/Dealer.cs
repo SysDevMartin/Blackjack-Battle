@@ -10,6 +10,8 @@ public class Dealer
     private const int PercentageChanceToIgnoreSumWhenBelowTarget = 50;
     private const int SumLeftToTargetForIgnoreChance = 3;
     private const string TextColorName = "red";
+    private const int PercentageChanceToDoubleDownOnTargetSum = 50;
+    private const int PercentageChanceToDoubleDownOnTargetSumMinusOne = 15;
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
@@ -224,7 +226,26 @@ public class Dealer
                 (Hand.Cards.Count >= Settings.MaxCardCount)
             )
             {
-                IsStanding = true;
+                var doDoubleDown = false;
+                
+                if (!Stats.IsDoubleDownActive)
+                {
+                    var randomNumber = _randomNumberGenerator.Next(0, 100 + 1);
+                    doDoubleDown = (
+                        (cardSum == Settings.TargetCardSum && randomNumber <= PercentageChanceToDoubleDownOnTargetSum) ||
+                        (cardSum == (Settings.TargetCardSum - 1) && randomNumber <= PercentageChanceToDoubleDownOnTargetSumMinusOne)
+                    );
+                }
+
+                if (doDoubleDown)
+                {
+                    Stats.IsDoubleDownActive = true;
+                    Game.CurrentTurn = Game.Turn.Player;
+                }
+                else
+                {
+                    IsStanding = true;
+                }
             }
             else if (cardSum < MinCardSumToStand)
             {

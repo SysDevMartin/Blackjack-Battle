@@ -8,8 +8,7 @@ public class Player
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
-    //public Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
-    public readonly Stats Stats = new(Settings.StartingMaxHealth, 1000);
+    public Stats Stats = new(Settings.StartingMaxHealth, Settings.StartingDamageMultiplier);
     
     private readonly Color _borderColor = Color.Green;
 
