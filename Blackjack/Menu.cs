@@ -34,7 +34,7 @@ public static class Menu
         [
             "[bold][chartreuse3]Hit[/][/] [dim]- Get a card from the dealer.[/]",
             "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]",
-            "[bold][darkorange]Double Down[/][/] [dim]- Double your damage dealt AND damage taken this round.[/]",
+            "[bold][darkorange]Double down[/][/] [dim]- Double your damage dealt AND damage taken this round.[/]",
             "[bold][red]Quit[/][/]"
         ];
         
@@ -51,7 +51,7 @@ public static class Menu
             case "[bold][gold3_1]Stand[/][/] [dim]- Stay at current card sum.[/]":
                 return TurnActionChoice.Stand;
             
-            case "[bold][darkorange]Double Down[/][/] [dim]- Double your damage dealt AND damage taken this round.[/]":
+            case "[bold][darkorange]Double down[/][/] [dim]- Double your damage dealt AND damage taken this round.[/]":
                 return TurnActionChoice.DoubleDown;
             
             case "[bold][red]Quit[/][/]":
@@ -97,7 +97,7 @@ public static class Menu
         
         string[] availableChoices =
         [
-            "[bold][chartreuse3]Play Again[/][/]",
+            "[bold][chartreuse3]Play again[/][/]",
             "[bold][red]Quit[/][/]"
         ];
         
@@ -108,7 +108,7 @@ public static class Menu
         
         switch (selectedMenuItem)
         {
-            case "[bold][chartreuse3]Play Again[/][/]":
+            case "[bold][chartreuse3]Play again[/][/]":
                 return GameOverMenuChoice.PlayAgain;
             
             case "[bold][red]Quit[/][/]":

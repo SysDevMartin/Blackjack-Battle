@@ -53,8 +53,8 @@ public class Hand
         // Use MaxCardValue + 1 to account for the fact that the
         // random function starts at value 0, not 1.
         var randomNumber = _randomNumberGenerator.Next(
-            Game.Settings.MinCardValue,
-            Game.Settings.MaxCardValue + 1
+            Settings.MinCardValue,
+            Settings.MaxCardValue + 1
         );
         
         return new Card(randomNumber);

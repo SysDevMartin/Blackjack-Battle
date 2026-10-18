@@ -2,7 +2,7 @@
 
 namespace Blackjack;
 
-public class WinCondition
+public static class WinCondition
 {
     public static void CheckRoundWinCondition(Player player, Dealer dealer)
     {
@@ -12,8 +12,8 @@ public class WinCondition
         var dealerCardSum = dealer.Hand.GetEffectiveCardSum();
         
         var playerDealerSumDifference = playerCardSum - dealerCardSum;
-        var isPlayerOverTargetSum = playerCardSum > Game.Settings.TargetCardSum;
-        var isDealerOverTargetSum = dealerCardSum > Game.Settings.TargetCardSum;
+        var isPlayerOverTargetSum = playerCardSum > Settings.TargetCardSum;
+        var isDealerOverTargetSum = dealerCardSum > Settings.TargetCardSum;
         
         var playerWins = false;
         var dealerWins = false;

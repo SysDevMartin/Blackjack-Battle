@@ -29,7 +29,7 @@ public class Card
         
         if (_originalValue == AceCardValue)
         {
-            var highAceStaysBelowOrAtTargetSum = cardSum + highAceValue <= Game.Settings.TargetCardSum;
+            var highAceStaysBelowOrAtTargetSum = cardSum + highAceValue <= Settings.TargetCardSum;
             EffectiveValue = highAceStaysBelowOrAtTargetSum ? highAceValue : lowAceValue;
             IsAce = true;
         }

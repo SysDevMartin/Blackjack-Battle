@@ -2,7 +2,7 @@
 
 namespace Blackjack;
 
-public class Display
+public static class Display
 {
     public static void DisplayGameLogoPanel()
     {
@@ -27,10 +27,13 @@ public class Display
         bool isDoubleDownActive
         )
     {
+        var mainPanelBorderColor = borderColor;
+        var portraitPanelBorderColor = borderColor;
+        
         if (isStanding)
         {
             playerName += " (STANDING)";
-            borderColor = Color.LightGoldenrod1;
+            mainPanelBorderColor = Color.LightGoldenrod1;
         }
 
         var grid = new Grid();
@@ -70,12 +73,12 @@ public class Display
 
         var panel = new Panel(rows)
         {
-            Width = Game.Settings.GamePanelWidth
+            Width = Settings.GamePanelWidth
         }
         .Header(headerText)
-        .BorderColor(borderColor);
+        .BorderColor(mainPanelBorderColor);
 
-        var portraitPanel = GetPortraitPanel(portraitAsciiArt, borderColor, textColorName);
+        var portraitPanel = GetPortraitPanel(portraitAsciiArt, portraitPanelBorderColor, textColorName);
         grid.AddRow(panel, portraitPanel);
         
         //AnsiConsole.Write(panel);
@@ -111,7 +114,7 @@ public class Display
 
         var panel = new Panel(grid)
         {
-            Width = Game.Settings.GamePanelWidth
+            Width = Settings.GamePanelWidth
         }
         .NoBorder();
 

@@ -9,7 +9,7 @@ public class Player
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
     //public Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
-    public readonly Stats Stats = new(Game.Settings.StartingMaxHealth, 1000);
+    public readonly Stats Stats = new(Settings.StartingMaxHealth, 1000);
     
     private readonly Color _borderColor = Color.Green;
 
@@ -17,7 +17,7 @@ public class Player
     {
         IsStanding = false;
         Hand.Cards.Clear();
-        Stats.Reset(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+        Stats.Reset(Settings.StartingMaxHealth, Settings.StartingDamageMultiplier);
     }
 
     public void DisplayPanel()
@@ -56,7 +56,7 @@ public class Player
         switch (playerChoice)
         {
             case Menu.TurnActionChoice.Hit:
-                if (Hand.Cards.Count < Game.Settings.MaxCardCount)
+                if (Hand.Cards.Count < Settings.MaxCardCount)
                 {
                     IsStanding = false;
                     Hand.AddRandomCard();
@@ -81,7 +81,7 @@ public class Player
                 }
                 else
                 {
-                    actionMessage = "[red]You can only Double Down once per round.[/]";
+                    actionMessage = "[red]You can only double down once per round.[/]";
                 }
                 break;
             

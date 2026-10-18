@@ -13,7 +13,7 @@ public class Dealer
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
-    public readonly Stats Stats = new(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+    public readonly Stats Stats = new(Settings.StartingMaxHealth, Settings.StartingDamageMultiplier);
     
     private readonly Color _borderColor = Color.Red;
     private readonly Random _randomNumberGenerator = new();
@@ -22,7 +22,7 @@ public class Dealer
     {
         IsStanding = false;
         Hand.Cards.Clear();
-        Stats.Reset(Game.Settings.StartingMaxHealth, Game.Settings.StartingDamageMultiplier);
+        Stats.Reset(Settings.StartingMaxHealth, Settings.StartingDamageMultiplier);
     }
 
     public string GetRandomPhrase()
@@ -213,13 +213,15 @@ public class Dealer
 
     private void MakeTurnDecision()
     {
+        // TODO: Add possibility for Double Down.
+        
         if (!IsStanding)
         {
             var cardSum = Hand.GetEffectiveCardSum();
             
             if (
-                (cardSum >= Game.Settings.TargetCardSum) ||
-                (Hand.Cards.Count >= Game.Settings.MaxCardCount)
+                (cardSum >= Settings.TargetCardSum) ||
+                (Hand.Cards.Count >= Settings.MaxCardCount)
             )
             {
                 IsStanding = true;
@@ -232,7 +234,7 @@ public class Dealer
             else
             {
                 // If the other conditions fail, calculate if the dealer should hit or stand.
-                var sumLeftToTarget = Game.Settings.TargetCardSum - cardSum;
+                var sumLeftToTarget = Settings.TargetCardSum - cardSum;
 
                 // When the card sum left to the target sum is equal to or greater than a certain value,
                 // roll the dice to check if the dealer should gamble with one more card.
