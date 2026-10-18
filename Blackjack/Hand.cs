@@ -21,21 +21,20 @@ public class Hand
         return sum;
     }
 
-    public int GetNonAceCardSum()
+    private int GetNonAceEffectiveCardSum()
     {
         var sum = 0;
         foreach (var card in Cards.Where(x => !x.IsAce))
         {
             sum += card.EffectiveValue;
         }
-
         return sum;
     }
 
     public void AddRandomCard()
     {
         Cards.Add(GetRandomCard());
-        RecalculateCardValues(GetNonAceCardSum());
+        RecalculateCardValues(GetNonAceEffectiveCardSum());
     }
 
     private void RecalculateCardValues(int nonAceCardSum)
