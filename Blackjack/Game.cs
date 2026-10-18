@@ -91,11 +91,16 @@ public class Game
         while (CurrentGameState != GameState.Quit)
         {
             AnsiConsole.Clear();
+            
+            // Display game logo and instructions.
             Display.DisplayGameLogoPanel();
             AnsiConsole.WriteLine("");
             
+            // Display dealer panel.
             var revealDealerCards = player.IsStanding && dealer.IsStanding;
             dealer.DisplayPanel(revealDealerCards);
+            
+            // Display player panel.
             AnsiConsole.WriteLine("");
             player.DisplayPanel();
             
@@ -111,7 +116,6 @@ public class Game
                 WinCondition.CheckRoundWinCondition(player, dealer);
             }
 
-            // TODO: Fix bug with game reset after winning/losing.
             if (CurrentGameState != GameState.GameOver)
             {
                 ProcessGameState(ref gameMessageMarkupText, player, dealer);

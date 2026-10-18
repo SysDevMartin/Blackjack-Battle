@@ -213,7 +213,7 @@ public class Dealer
 
     private void MakeTurnDecision()
     {
-        // TODO: Add possibility for Double Down.
+        // TODO: Add possibility for double down.
         
         if (!IsStanding)
         {
