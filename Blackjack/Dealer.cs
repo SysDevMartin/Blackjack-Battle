@@ -12,6 +12,7 @@ public class Dealer
     private const string TextColorName = "red";
     private const int PercentageChanceToDoubleDownOnTargetSum = 50;
     private const int PercentageChanceToDoubleDownOnTargetSumMinusOne = 15;
+    private const int PercentageChanceToDoubleDownOnTargetSumMinusTwo = 5;
     
     public bool IsStanding { get; set; }
     public readonly Hand Hand = new();
@@ -215,8 +216,6 @@ public class Dealer
 
     private void MakeTurnDecision()
     {
-        // TODO: Add possibility for double down.
-        
         if (!IsStanding)
         {
             var cardSum = Hand.GetEffectiveCardSum();
@@ -233,7 +232,8 @@ public class Dealer
                     var randomNumber = _randomNumberGenerator.Next(0, 100 + 1);
                     doDoubleDown = (
                         (cardSum == Settings.TargetCardSum && randomNumber <= PercentageChanceToDoubleDownOnTargetSum) ||
-                        (cardSum == (Settings.TargetCardSum - 1) && randomNumber <= PercentageChanceToDoubleDownOnTargetSumMinusOne)
+                        (cardSum == (Settings.TargetCardSum - 1) && randomNumber <= PercentageChanceToDoubleDownOnTargetSumMinusOne) ||
+                        (cardSum == (Settings.TargetCardSum - 2) && randomNumber <= PercentageChanceToDoubleDownOnTargetSumMinusTwo)
                     );
                 }
 

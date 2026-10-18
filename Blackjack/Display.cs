@@ -47,7 +47,7 @@ public static class Display
         var displayedCardSum = revealCards ? $"{cardSum}" : $"{visibleCardSum} + ?";
         var headerText = playerPhrase.Length > 0 ? $"{playerName} - {playerPhrase}" : playerName;
         var effectiveDamageText = revealCards ? $"{cardSum * stats.DamageMultiplier}" : $"{visibleCardSum * stats.DamageMultiplier}+";
-        var percentageHealth = Math.Round((stats.CurrentHealth / (float)stats.MaxHealth) * 100);
+        var percentageHealth = Math.Ceiling((stats.CurrentHealth / (float)stats.MaxHealth) * 100);
         var sumText = $"[white]Sum: {displayedCardSum}[/]";
 
         if (isDoubleDownActive)
@@ -81,7 +81,6 @@ public static class Display
         var portraitPanel = GetPortraitPanel(portraitAsciiArt, portraitPanelBorderColor, textColorName);
         grid.AddRow(panel, portraitPanel);
         
-        //AnsiConsole.Write(panel);
         AnsiConsole.Write(grid);
     }
 
