@@ -44,7 +44,8 @@ public class Player
             TextColorName,
             revealCards,
             IsStanding,
-            Stats.IsDoubleDownActive);
+            Stats.IsDoubleDownActive
+        );
     }
     
     public string ProcessTurn(Game game, Dealer dealer)
