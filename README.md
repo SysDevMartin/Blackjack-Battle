@@ -1,9 +1,8 @@
 # Blackjack Battle
 
-## Project description
-This project is a school assignment for a C# introduction course. Our instructions were to create a simple Blackjack game with basic rules. I decided to take it in another direction.
-
 **Blackjack Battle** is a game created as a C# console application with the **JetBrains Rider IDE** and the **[Spectre.Console](https://spectreconsole.net)** library for nicer console output.
+
+This project is a school assignment for a C# introduction course. Our instructions were to create a simple Blackjack game with basic rules. I decided to take it in another direction where you battle the dealer to the death.
 
 ![Preview](preview.gif)
 
