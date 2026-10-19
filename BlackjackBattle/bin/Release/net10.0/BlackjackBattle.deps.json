@@ -1,0 +1,59 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "BlackjackBattle/1.0.0": {
+        "dependencies": {
+          "Spectre.Console": "0.57.3-alpha.0.29"
+        },
+        "runtime": {
+          "BlackjackBattle.dll": {}
+        }
+      },
+      "Spectre.Console/0.57.3-alpha.0.29": {
+        "dependencies": {
+          "Spectre.Console.Ansi": "0.57.3-alpha.0.29"
+        },
+        "runtime": {
+          "lib/net10.0/Spectre.Console.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.57.3.0"
+          }
+        }
+      },
+      "Spectre.Console.Ansi/0.57.3-alpha.0.29": {
+        "runtime": {
+          "lib/net10.0/Spectre.Console.Ansi.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.57.3.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BlackjackBattle/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Spectre.Console/0.57.3-alpha.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0BvuE8vbJOYk2ynwpg9glECWZV4/QD3scyFgvUTTIJaZ5AFbzf4snaG+nqne1PckEjgKnsgmIyqSLM2hD14VbQ==",
+      "path": "spectre.console/0.57.3-alpha.0.29",
+      "hashPath": "spectre.console.0.57.3-alpha.0.29.nupkg.sha512"
+    },
+    "Spectre.Console.Ansi/0.57.3-alpha.0.29": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uONG2MvBxs+BqdWD+mv4At5xBpdoTNtYRMKscvPq20zFCWG1wOATR2IiZ7g2m7EpJk5Kx9i9cqcDErVEPZS6bA==",
+      "path": "spectre.console.ansi/0.57.3-alpha.0.29",
+      "hashPath": "spectre.console.ansi.0.57.3-alpha.0.29.nupkg.sha512"
+    }
+  }
+}
