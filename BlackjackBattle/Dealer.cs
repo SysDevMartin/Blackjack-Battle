@@ -28,7 +28,7 @@ public class Dealer
         Stats.Reset(Settings.StartingMaxHealth, Settings.StartingDamageMultiplier);
     }
 
-    public string GetRandomPhrase()
+    private string GetRandomPhrase()
     {
         string[] availablePhrases =
         {
@@ -67,7 +67,7 @@ public class Dealer
             "How much do you trust that hand?",
             "Risk it or keep it?",
             "Let's see some courage.",
-            "A bold choice could pay off. Or cost you everything.",
+            "A bold choice could pay off.",
             "No guts, no glory.",
             "What's the verdict?",
             "Time to make your move.",
@@ -82,7 +82,7 @@ public class Dealer
             "Winging it again?",
             "This could get interesting.",
             "How lucky do you feel right now?",
-            "The next card could be beautiful. Or absolutely devastating.",
+            "The next card could be beautiful.",
             "Make it count.",
             "What does your gut say?",
             "What's fate looking like today?",
@@ -101,12 +101,12 @@ public class Dealer
             "What's the smart move?",
             "What's the fun move?",
             "Do you believe in destiny?",
-            "This is where legends are made. Or cautionary tales.",
+            "This is where legends are made.",
             "Feeling brave enough for another card?",
             "Happy to stay where you are?",
             "Don't let me influence you.",
             "I'm just the dealer.",
-            "You're driving this bus. Hopefully with a license.",
+            "You're driving this bus.",
             "Take a chance.",
             "Play it safe. Or surprise us all.",
             "The cards have done their part.",
@@ -116,7 +116,7 @@ public class Dealer
             "Your face says one thing.",
             "Risk versus reward.",
             "The eternal struggle.",
-            "Let's make some history. Or at least finish this hand.",
+            "Let's make some history.",
             "What's it going to be, card shark?",
             "You feeling lucky, punk?",
             "This hand isn't getting any younger.",
@@ -159,7 +159,7 @@ public class Dealer
             "Not tempted by one more card?",
             "This hand isn't over yet.",
             "Are we done here?",
-            "The next card has your name on it. Or maybe it doesn't.",
+            "The next card has your name on it.",
             "Stand and hope?",
             "Hit and pray?",
             "What's your level of confidence right now?",
@@ -211,7 +211,8 @@ public class Dealer
             TextColorName,
             revealCards,
             IsStanding,
-            Stats.IsDoubleDownActive);
+            Stats.IsDoubleDownActive
+        );
     }
 
     private void MakeTurnDecision()
@@ -274,8 +275,6 @@ public class Dealer
                 }
             }
         }
-
-        Game.CurrentTurn = Game.Turn.Player;
     }
     
     public void ProcessTurn()
