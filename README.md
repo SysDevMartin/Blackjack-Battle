@@ -8,6 +8,6 @@ The project is a school assignment for a C# introduction course. Our instruction
 
 ## About the game
 - Your goal is to defeat the dealer by depleting their health. Their goal is to defeat you.
-- You strike the dealer by winning a round by gaining the highest card sum without going over 21. Damage dealt equals your card sum multiplied by your damage multiplier.
+- You strike the dealer when you win a round (by gaining the highest card sum without going over 21). Damage dealt equals your card sum multiplied by your damage multiplier.
 - Choose an appropriate action each turn. Get more cards, stay at your current card sum, or choose to double down (deal and take double damage for one round).
 - Every time you win a round, your damage multiplier will increase. This will significantly increase your damage multiplied.
