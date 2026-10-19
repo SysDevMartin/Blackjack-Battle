@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\Blackjack\\BlackjackBattle\\BlackjackBattle.csproj": {}
+    "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\BlackjackBattle\\BlackjackBattle\\BlackjackBattle.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\Blackjack\\BlackjackBattle\\BlackjackBattle.csproj": {
+    "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\BlackjackBattle\\BlackjackBattle\\BlackjackBattle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\Blackjack\\BlackjackBattle\\BlackjackBattle.csproj",
+        "projectUniqueName": "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\BlackjackBattle\\BlackjackBattle\\BlackjackBattle.csproj",
         "projectName": "BlackjackBattle",
-        "projectPath": "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\Blackjack\\BlackjackBattle\\BlackjackBattle.csproj",
+        "projectPath": "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\BlackjackBattle\\BlackjackBattle\\BlackjackBattle.csproj",
         "packagesPath": "C:\\Users\\Martin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\Blackjack\\BlackjackBattle\\obj\\",
+        "outputPath": "C:\\Users\\Martin\\Filer\\Arbete och utbildning\\SYS26D - Medieinstitutet\\Kurser\\2_c-sharp\\projects\\BlackjackBattle\\BlackjackBattle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Martin\\AppData\\Roaming\\NuGet\\NuGet.Config"
